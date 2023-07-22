@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=3 uid="uid://0ouiskkj40vj"]
+
+[ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
+[ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyd3g"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_mimj6")
+
+[node name="midi_game" parent="." instance=ExtResource("2_6ipgu")]
+
+[node name="MainMenu" type="PanelContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="MainMenu"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dyd3g")
+
+[node name="ColorRect" type="ColorRect" parent="MainMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "JIG"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Play"
+
+[node name="PauseWindow" type="ColorRect" parent="."]
+visible = false
+offset_right = 128.0
+offset_bottom = 128.0
+color = Color(0.168627, 0.168627, 0.168627, 0.823529)
+
+[node name="PauseContainer" type="PanelContainer" parent="PauseWindow"]
+process_mode = 2
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="PauseWindow/PauseContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dyd3g")
+
+[node name="ColorRect" type="ColorRect" parent="PauseWindow/PauseContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+color = Color(0, 1, 1, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseWindow/PauseContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Settings"
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_right = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PauseButton" type="Button" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_vertical = 4
+text = "MM"
+
+[connection signal="pressed" from="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
