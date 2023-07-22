@@ -26,6 +26,7 @@ color = Color(1, 1, 1, 0.329412)
 
 [node name="Polygon2D" type="Polygon2D" parent="keys"]
 position = Vector2(12, 16)
+color = Color(0.982343, 0.982342, 0.982342, 1)
 polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
 
 [node name="Polygon2D2" type="Polygon2D" parent="keys"]

@@ -15,6 +15,7 @@ func _process(_delta):
 
 # Ends game and shows home menu
 func _on_menu_button_pressed():
+	midi_game.score = 0
 	midi_game.mplayer.stop()
 	midi_game.ui.visible = false
 	midi_game.visible = false
