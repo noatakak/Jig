@@ -18,29 +18,29 @@ script = ExtResource("1_mfugn")
 file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
 load_all_voices_from_soundfont = false
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_top = 76.0
+[node name="keys" type="ColorRect" parent="."]
+offset_top = 80.0
 offset_right = 128.0
-offset_bottom = 100.0
+offset_bottom = 104.0
 color = Color(1, 1, 1, 0.329412)
 
-[node name="Polygon2D" type="Polygon2D" parent="ColorRect"]
+[node name="Polygon2D" type="Polygon2D" parent="keys"]
 position = Vector2(12, 16)
 polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
 
-[node name="Polygon2D2" type="Polygon2D" parent="ColorRect"]
+[node name="Polygon2D2" type="Polygon2D" parent="keys"]
 position = Vector2(44, 16)
 polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
 
-[node name="Polygon2D3" type="Polygon2D" parent="ColorRect"]
+[node name="Polygon2D3" type="Polygon2D" parent="keys"]
 position = Vector2(76, 16)
 polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
 
-[node name="Polygon2D4" type="Polygon2D" parent="ColorRect"]
+[node name="Polygon2D4" type="Polygon2D" parent="keys"]
 position = Vector2(108, 16)
 polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
 
-[node name="Label" type="Label" parent="ColorRect"]
+[node name="Label" type="Label" parent="keys"]
 layout_mode = 0
 offset_right = 128.0
 offset_bottom = 23.0
@@ -49,11 +49,11 @@ theme_override_font_sizes/font_size = 14
 text = "   a       s      d       f "
 vertical_alignment = 1
 
-[node name="score" type="Label" parent="."]
+[node name="score" type="Label" parent="keys"]
 offset_left = 36.0
-offset_top = 104.0
+offset_top = 28.0
 offset_right = 92.0
-offset_bottom = 124.0
+offset_bottom = 48.0
 theme_override_font_sizes/font_size = 12
 text = "Score: "
 
@@ -74,7 +74,7 @@ offset_top = 104.0
 offset_right = 128.0
 offset_bottom = 128.0
 text = "space
-to pause"
+to cast"
 label_settings = SubResource("LabelSettings_1wlao")
 horizontal_alignment = 1
 vertical_alignment = 1

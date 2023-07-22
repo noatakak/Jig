@@ -1,9 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://0ouiskkj40vj"]
+[gd_scene load_steps=5 format=3 uid="uid://0ouiskkj40vj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
 [ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyd3g"]
+
+[sub_resource type="GDScript" id="GDScript_hoxx6"]
+script/source = "extends ColorRect
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta):
+	pass
+
+# Pauses and unpauses game only when main menu is not active
+func _input(event):
+	if event.is_action_pressed(\"pause\") and not get_parent().get_node(\"MainMenu\").visible:
+		self.visible = not self.visible
+		get_tree().paused = not get_tree().paused
+"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mimj6")
@@ -63,20 +83,22 @@ theme_override_constants/margin_right = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 4
 text = "Play"
 
 [node name="PauseWindow" type="ColorRect" parent="."]
+process_mode = 3
 visible = false
 offset_right = 128.0
 offset_bottom = 128.0
 color = Color(0.168627, 0.168627, 0.168627, 0.823529)
+script = SubResource("GDScript_hoxx6")
 
 [node name="PauseContainer" type="PanelContainer" parent="PauseWindow"]
-process_mode = 2
+layout_mode = 0
 offset_left = 32.0
 offset_top = 32.0
 offset_right = 96.0
@@ -122,11 +144,11 @@ theme_override_constants/margin_right = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PauseButton" type="Button" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+[node name="MenuButton" type="Button" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 4
 text = "MM"
 
-[connection signal="pressed" from="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PauseButton" to="." method="_on_pause_button_pressed"]
+[connection signal="pressed" from="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]
