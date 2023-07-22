@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=6 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
+[ext_resource type="Texture2D" uid="uid://dfyql7yoiitvr" path="res://assets/midi/art/ui/background_mm.png" id="3_d114q"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_6gvq8"]
 line_spacing = 0.0
@@ -17,6 +18,22 @@ script = ExtResource("1_mfugn")
 [node name="MidiPlayer" parent="." instance=ExtResource("1_ae3a3")]
 file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
 load_all_voices_from_soundfont = false
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_d114q")
 
 [node name="keys" type="ColorRect" parent="."]
 offset_top = 80.0
@@ -51,6 +68,7 @@ text = "   a       s      d       f "
 vertical_alignment = 1
 
 [node name="score" type="Label" parent="keys"]
+layout_mode = 0
 offset_left = 36.0
 offset_top = 28.0
 offset_right = 92.0
