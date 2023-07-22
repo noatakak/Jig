@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cuyd1qv0pn26e"]
+
+[ext_resource type="Script" path="res://addons/old-midi/MidiPlayer.gd" id="1_ju2be"]
+
+[node name="MidiPlayer" type="Node"]
+script = ExtResource("1_ju2be")
+file = "res://assets/midi/midi/Swallowtail_Jig.mid"
+soundfont = "res://assets/midi/soundfonts/FinalFantasyVI.sf2"
