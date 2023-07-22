@@ -13,8 +13,15 @@ func _process(_delta):
 	pass
 
 
-# Ends game and shows home menu
-func _on_menu_button_pressed():
+# Starts game and hides menu
+func _on_play_button_pressed():
+	get_node("MainMenu").visible = false
+	midi_game.visible = true
+	midi_game.set_process(true)
+
+
+
+func _on_quit_button_pressed():
 	midi_game.score = 0
 	midi_game.mplayer.stop()
 	midi_game.ui.visible = false
@@ -23,11 +30,3 @@ func _on_menu_button_pressed():
 	get_node("MainMenu").visible = true
 	get_tree().paused = false
 	midi_game.set_process(false)
-
-
-# Starts game and hides menu
-func _on_play_button_pressed():
-	get_node("MainMenu").visible = false
-	midi_game.visible = true
-	midi_game.set_process(true)
-

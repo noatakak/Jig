@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://0ouiskkj40vj"]
+[gd_scene load_steps=14 format=3 uid="uid://0ouiskkj40vj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
 [ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
+[ext_resource type="Texture2D" uid="uid://vkyi6fs1wfmm" path="res://assets/midi/art/ui/background_mm.png" id="3_k1nx3"]
+[ext_resource type="Texture2D" uid="uid://08h72075md4q" path="res://assets/midi/art/ui/jig_logo_mm.png" id="4_sofuh"]
+[ext_resource type="Texture2D" uid="uid://1rb81oic6u2o" path="res://assets/midi/art/ui/play_button_mm.png" id="5_270sj"]
+[ext_resource type="Texture2D" uid="uid://d3n0u4nsg5rk2" path="res://assets/midi/art/ui/play_button_click.png" id="6_vjfq7"]
+[ext_resource type="Texture2D" uid="uid://djs8oihwwi5wn" path="res://assets/midi/art/ui/play_button_hover.png" id="7_qj03q"]
+[ext_resource type="Texture2D" uid="uid://cv302cr2twf1s" path="res://assets/midi/art/ui/pause_title.png" id="8_x1t51"]
+[ext_resource type="Texture2D" uid="uid://ci2thsdq67qxs" path="res://assets/midi/art/ui/quit_button_default.png" id="9_r3415"]
+[ext_resource type="Texture2D" uid="uid://bpfnqqsxdh8r6" path="res://assets/midi/art/ui/quit_button_click.png" id="10_gu3m1"]
+[ext_resource type="Texture2D" uid="uid://durr5wvx4bw3m" path="res://assets/midi/art/ui/quit_button_hover.png" id="11_coh16"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyd3g"]
-
-[sub_resource type="GDScript" id="GDScript_hoxx6"]
+[sub_resource type="GDScript" id="GDScript_juip4"]
 script/source = "extends ColorRect
 
 
@@ -25,10 +32,86 @@ func _input(event):
 		get_tree().paused = not get_tree().paused
 "
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dyd3g"]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_mimj6")
 
 [node name="midi_game" parent="." instance=ExtResource("2_6ipgu")]
+
+[node name="PauseWindow" type="ColorRect" parent="."]
+process_mode = 3
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.196078, 0.196078, 0.196078, 0.505882)
+script = SubResource("GDScript_juip4")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseWindow"]
+layout_mode = 2
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+
+[node name="Panel" type="Panel" parent="PauseWindow/MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_dyd3g")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="PauseWindow/MarginContainer/Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("3_k1nx3")
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseWindow/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_x1t51")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_right = 13
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="QuitButton" type="TextureButton" parent="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("9_r3415")
+texture_pressed = ExtResource("10_gu3m1")
+texture_hover = ExtResource("11_coh16")
 
 [node name="MainMenu" type="PanelContainer" parent="."]
 anchors_preset = 8
@@ -48,107 +131,51 @@ custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_dyd3g")
 
-[node name="ColorRect" type="ColorRect" parent="MainMenu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-color = Color(0, 1, 1, 1)
+[node name="NinePatchRect" type="NinePatchRect" parent="MainMenu/Panel"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_k1nx3")
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_direction = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
-text = "JIG"
-horizontal_alignment = 1
-vertical_alignment = 1
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_sofuh")
+stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_right = 13
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(10, 10)
+[node name="PlayButton" type="TextureButton" parent="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Play"
+texture_normal = ExtResource("5_270sj")
+texture_pressed = ExtResource("6_vjfq7")
+texture_hover = ExtResource("7_qj03q")
 
-[node name="PauseWindow" type="ColorRect" parent="."]
-process_mode = 3
-visible = false
-offset_right = 128.0
-offset_bottom = 128.0
-color = Color(0.168627, 0.168627, 0.168627, 0.823529)
-script = SubResource("GDScript_hoxx6")
-
-[node name="PauseContainer" type="PanelContainer" parent="PauseWindow"]
-layout_mode = 0
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 96.0
-offset_bottom = 96.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Panel" type="Panel" parent="PauseWindow/PauseContainer"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_dyd3g")
-
-[node name="ColorRect" type="ColorRect" parent="PauseWindow/PauseContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-color = Color(0, 1, 1, 1)
-
-[node name="MarginContainer" type="MarginContainer" parent="PauseWindow/PauseContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Settings"
-
-[node name="MarginContainer" type="MarginContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 5
-theme_override_constants/margin_right = 5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-
-[node name="MenuButton" type="Button" parent="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(10, 10)
-layout_mode = 2
-size_flags_vertical = 4
-text = "MM"
-
+[connection signal="pressed" from="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="PauseWindow/PauseContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MenuButton" to="." method="_on_menu_button_pressed"]

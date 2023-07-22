@@ -1,16 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=5 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
-[ext_resource type="Texture2D" uid="uid://dfyql7yoiitvr" path="res://assets/midi/art/ui/background_mm.png" id="3_d114q"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_6gvq8"]
-line_spacing = 0.0
-font_size = 8
-
-[sub_resource type="LabelSettings" id="LabelSettings_1wlao"]
-line_spacing = 0.0
-font_size = 8
+[ext_resource type="Texture2D" uid="uid://dm4ioyicpsplt" path="res://assets/midi/art/ui/space_to_cast.png" id="3_o5g4o"]
+[ext_resource type="Texture2D" uid="uid://b76w6mnw1e2p8" path="res://assets/midi/art/ui/esc_to_pause.png" id="4_irbyd"]
 
 [node name="test_game" type="Node2D"]
 script = ExtResource("1_mfugn")
@@ -18,22 +11,6 @@ script = ExtResource("1_mfugn")
 [node name="MidiPlayer" parent="." instance=ExtResource("1_ae3a3")]
 file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
 load_all_voices_from_soundfont = false
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 128.0
-offset_bottom = 128.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture = ExtResource("3_d114q")
 
 [node name="keys" type="ColorRect" parent="."]
 offset_top = 80.0
@@ -76,26 +53,42 @@ offset_bottom = 48.0
 theme_override_font_sizes/font_size = 12
 text = "Score: "
 
-[node name="esc" type="Label" parent="."]
-offset_top = 104.0
-offset_right = 34.0
-offset_bottom = 130.0
-theme_override_font_sizes/font_size = 10
-text = "esc
-to pause"
-label_settings = SubResource("LabelSettings_6gvq8")
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="space" type="Label" parent="."]
-offset_left = 94.0
-offset_top = 104.0
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_top = 117.0
 offset_right = 128.0
 offset_bottom = 128.0
-text = "space
-to cast"
-label_settings = SubResource("LabelSettings_1wlao")
-horizontal_alignment = 1
-vertical_alignment = 1
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_left = 2
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 2
+theme_override_constants/margin_bottom = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="EscToPause" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("4_irbyd")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="SpaceToCast" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("3_o5g4o")
 
 [connection signal="appeared_lyric" from="MidiPlayer" to="." method="_on_midi_player_appeared_lyric"]
