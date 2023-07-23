@@ -1,12 +1,44 @@
-[gd_scene format=3 uid="uid://cbe7k48u4aqhe"]
+[gd_scene load_steps=6 format=3 uid="uid://cbe7k48u4aqhe"]
+
+[ext_resource type="Texture2D" uid="uid://5nwv3hh4eja" path="res://assets/midi/art/ui/big_wave.png" id="1_jvc2d"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3r14e"]
+atlas = ExtResource("1_jvc2d")
+region = Rect2(0, 0, 14, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bixdv"]
+atlas = ExtResource("1_jvc2d")
+region = Rect2(14, 0, 14, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_22d7j"]
+atlas = ExtResource("1_jvc2d")
+region = Rect2(28, 0, 14, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2jh3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3r14e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bixdv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_22d7j")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="note" type="Node2D"]
 metadata/play_time = 0
 metadata/letter = ""
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.211765, 0.396078, 1, 1)
-polygon = PackedVector2Array(0, -12, 12, 0, 0, 12, -12, 0)
+texture_filter = 1
+position = Vector2(-7, -5)
+sprite_frames = SubResource("SpriteFrames_m2jh3")
+autoplay = "default"
+frame_progress = 0.051588
+centered = false

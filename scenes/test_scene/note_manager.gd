@@ -13,6 +13,8 @@ var s_target
 var d_target
 var f_target
 
+var lerp_start = 0.4
+
 @export var milisec_view: int = 2000
 
 func _ready():
@@ -66,24 +68,24 @@ func move_notes(time):
 			if note.get_meta("letter") == "a ":
 				var t = (milisec_view - distance)/milisec_view
 				note.position = a_start.position.lerp(a_target.position, t)
-				var scale = lerp(0.0, 1.0, t)
+				var scale = lerp(lerp_start, 1.0, t)
 				note.scale.x = scale
 				note.scale.y = scale
 			if note.get_meta("letter") == "s ":
 				var t = (milisec_view - distance)/milisec_view
 				note.position = s_start.position.lerp(s_target.position, t)
-				var scale = lerp(0.0, 1.0, t)
+				var scale = lerp(lerp_start, 1.0, t)
 				note.scale.x = scale
 				note.scale.y = scale
 			if note.get_meta("letter") == "d ":
 				var t = (milisec_view - distance)/milisec_view
 				note.position = d_start.position.lerp(d_target.position, t)
-				var scale = lerp(0.0, 1.0, t)
+				var scale = lerp(lerp_start, 1.0, t)
 				note.scale.x = scale
 				note.scale.y = scale
 			if note.get_meta("letter") == "f ":
 				var t = (milisec_view - distance)/milisec_view
 				note.position = f_start.position.lerp(f_target.position, t)
-				var scale = lerp(0.0, 1.0, t)
+				var scale = lerp(lerp_start, 1.0, t)
 				note.scale.x = scale
 				note.scale.y = scale
