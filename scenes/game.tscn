@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://0ouiskkj40vj"]
+[gd_scene load_steps=23 format=3 uid="uid://0ouiskkj40vj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
 [ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bpfnqqsxdh8r6" path="res://assets/midi/art/ui/quit_button_click.png" id="10_gu3m1"]
 [ext_resource type="Texture2D" uid="uid://durr5wvx4bw3m" path="res://assets/midi/art/ui/quit_button_hover.png" id="11_coh16"]
 [ext_resource type="AudioStream" uid="uid://b06boyjfvcifg" path="res://assets/midi/wavs/click.wav" id="12_24htv"]
+[ext_resource type="Texture2D" uid="uid://paehcsxgwryi" path="res://assets/midi/art/ui/names.png" id="13_3lwsm"]
 [ext_resource type="AudioStream" uid="uid://bevamqkocfknm" path="res://assets/midi/wavs/ocean.wav" id="13_uqjap"]
 [ext_resource type="AudioStream" uid="uid://b35d2bklkghk0" path="res://assets/midi/wavs/snare.wav" id="14_n8qwe"]
 [ext_resource type="AudioStream" uid="uid://b3m8jv63uqbnk" path="res://assets/midi/wavs/drum.wav" id="14_yvlat"]
@@ -226,6 +227,7 @@ theme_override_constants/margin_bottom = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainMenu/Panel/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 1
 
 [node name="TextureRect" type="TextureRect" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
 texture_filter = 1
@@ -251,6 +253,17 @@ size_flags_vertical = 4
 texture_normal = ExtResource("5_270sj")
 texture_pressed = ExtResource("6_vjfq7")
 texture_hover = ExtResource("7_qj03q")
+
+[node name="names" type="MarginContainer" parent="MainMenu/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu/Panel/MarginContainer/VBoxContainer/names"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("13_3lwsm")
+stretch_mode = 2
 
 [node name="ButtonClick" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_24htv")
