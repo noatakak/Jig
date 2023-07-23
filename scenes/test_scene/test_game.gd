@@ -139,13 +139,31 @@ func select_song():
 	else:
 		return "res://assets/midi/midi/Irish_washerwoman_Jig-lyrics.mid"
 	
+	
+	var mouse_position
+	var click
+	var mouse_space 
+	var mouse_esc
+	var mouse_a
+	var mouse_s
+	var mouse_d
+	var mouse_f
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	get_node("keys/score").text = "Score: " + str(score)
 	get_node("note_manager").move_notes(mplayer.position)
+	var mouse_position = get_global_mouse_position()
+	var click = Input.is_action_just_pressed("mouse_left") and self.visible
+	var mouse_space = click and mouse_position.x >= 96 and mouse_position.x <= 128 and mouse_position.y >= 114 and mouse_position.y <= 128 
+	var mouse_esc = click and mouse_position.x >= 0 and mouse_position.x <= 25 and mouse_position.y >= 114 and mouse_position.y <= 128
+	var mouse_a = click and mouse_position.x >= 0 and mouse_position.x <= 28 and mouse_position.y >= 86 and mouse_position.y <= 104
+	var mouse_s = click and mouse_position.x >= 30 and mouse_position.x <= 62 and mouse_position.y >= 86 and mouse_position.y <= 104
+	var mouse_d = click and mouse_position.x >= 64 and mouse_position.x <= 96 and mouse_position.y >= 86 and mouse_position.y <= 104
+	var mouse_f = click and mouse_position.x >= 97 and mouse_position.x <= 128 and mouse_position.y >= 86 and mouse_position.y <= 104
+	#print(mouse_position)
 	# hit space to make ui visible and start music
-	if Input.is_action_pressed("test") and not casted_flag and not mplayer.playing:
+	if (Input.is_action_pressed("test") or mouse_space) and not casted_flag and not mplayer.playing:
 		casted_flag = true
 		var song = select_song()
 		load_notes(song)
