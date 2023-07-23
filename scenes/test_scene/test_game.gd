@@ -149,27 +149,27 @@ func select_song():
 		return "res://assets/midi/midi/Irish_washerwoman_Jig-lyrics.mid"
 	
 	
-	var mouse_position
-	var click
-	var mouse_space 
-	var mouse_esc
-	var mouse_a
-	var mouse_s
-	var mouse_d
-	var mouse_f
+var mouse_position
+var click
+var mouse_space 
+var mouse_esc
+var mouse_a
+var mouse_s
+var mouse_d
+var mouse_f
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	get_node("keys/score").text = "Score: " + str(score)
 	get_node("note_manager").move_notes(mplayer.position)
-	var mouse_position = get_global_mouse_position()
-	var click = Input.is_action_just_pressed("mouse_left") and self.visible
-	var mouse_space = click and mouse_position.x >= 96 and mouse_position.x <= 128 and mouse_position.y >= 114 and mouse_position.y <= 128 
-	var mouse_esc = click and mouse_position.x >= 0 and mouse_position.x <= 25 and mouse_position.y >= 114 and mouse_position.y <= 128
-	var mouse_a = click and mouse_position.x >= 0 and mouse_position.x <= 28 and mouse_position.y >= 86 and mouse_position.y <= 104
-	var mouse_s = click and mouse_position.x >= 30 and mouse_position.x <= 62 and mouse_position.y >= 86 and mouse_position.y <= 104
-	var mouse_d = click and mouse_position.x >= 64 and mouse_position.x <= 96 and mouse_position.y >= 86 and mouse_position.y <= 104
-	var mouse_f = click and mouse_position.x >= 97 and mouse_position.x <= 128 and mouse_position.y >= 86 and mouse_position.y <= 104
+	mouse_position = get_global_mouse_position()
+	click = Input.is_action_pressed("mouse_left") and self.visible
+	mouse_space = click and mouse_position.x >= 96 and mouse_position.x <= 128 and mouse_position.y >= 114 and mouse_position.y <= 128 
+	mouse_esc = click and mouse_position.x >= 0 and mouse_position.x <= 25 and mouse_position.y >= 114 and mouse_position.y <= 128
+	mouse_a = click and mouse_position.x >= 0 and mouse_position.x <= 28 and mouse_position.y >= 86 and mouse_position.y <= 104
+	mouse_s = click and mouse_position.x >= 30 and mouse_position.x <= 62 and mouse_position.y >= 86 and mouse_position.y <= 104
+	mouse_d = click and mouse_position.x >= 64 and mouse_position.x <= 96 and mouse_position.y >= 86 and mouse_position.y <= 104
+	mouse_f = click and mouse_position.x >= 97 and mouse_position.x <= 128 and mouse_position.y >= 86 and mouse_position.y <= 104
 	#print(mouse_position)
 	# hit space to make ui visible and start music
 	if (Input.is_action_pressed("test") or mouse_space) and not casted_flag and not mplayer.playing:
@@ -197,6 +197,7 @@ func _process(_delta):
 		
 		ui.visible = true
 		mplayer.play()
+		score = 0
 		
 	if mplayer.playing:
 		if key_a_flag and note_a_flag:
@@ -243,19 +244,19 @@ func _on_midi_player_appeared_lyric(lyric):
 
 
 func _input(event):
-	if event.is_action_pressed("a "):
+	if event.is_action_pressed("a ") or mouse_a:
 		key_a_flag = true
 		key_a_timer.start()
 		get_node("keys/NetA").play("red")				
-	if	event.is_action_pressed("s "):
+	if	event.is_action_pressed("s ") or mouse_s:
 		key_s_flag = true
 		key_s_timer.start()
 		get_node("keys/NetS").play("red")						
-	if event.is_action_pressed("d "):
+	if event.is_action_pressed("d ") or mouse_d:
 		key_d_flag = true
 		key_d_timer.start()
 		get_node("keys/NetD").play("red")						
-	if event.is_action_pressed("f "):
+	if event.is_action_pressed("f ") or mouse_f:
 		key_f_flag = true
 		key_f_timer.start()
 		get_node("keys/NetF").play("red")						

@@ -38,7 +38,7 @@ func _process(_delta):
 
 # Pauses and unpauses game only when main menu is not active
 func _input(event):
-	if event.is_action_pressed(\"pause\") and not get_parent().get_node(\"MainMenu\").visible:
+	if (event.is_action_pressed(\"pause\") or (get_parent().get_node(\"midi_game\").mouse_esc and not get_tree().paused)) and not get_parent().get_node(\"MainMenu\").visible:
 		self.visible = not self.visible
 		get_tree().paused = not get_tree().paused
 "
