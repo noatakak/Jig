@@ -116,6 +116,22 @@ func _process(_delta):
 		var song = select_song()
 		load_notes(song)
 		mplayer.file = song
+		
+		$BoatSprite/IdleAnimation.visible = false
+		
+		$BoatSprite/CastAnimation.visible = true
+		$BoatSprite/CastAnimation.play("default")
+		await $BoatSprite/CastAnimation.animation_finished	
+		
+		$BoatSprite/CastAnimation.visible = false
+		$BoatSprite/CastIdleAnimation.visible = true		
+		$BoatSprite/CastIdleAnimation.play("default")		
+		await $BoatSprite/CastIdleAnimation.animation_finished				
+		
+		$BoatSprite/CastIdleAnimation.visible = false
+		$BoatSprite/ReelAnimation.visible = true
+		$BoatSprite/ReelAnimation.play("default")										
+		
 		ui.visible = true
 		mplayer.play()
 		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=52 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
@@ -12,6 +12,9 @@
 [ext_resource type="Texture2D" uid="uid://bvx1jw8fh8uys" path="res://assets/midi/art/ui/f_net_sheet.png" id="8_abxcn"]
 [ext_resource type="Texture2D" uid="uid://drtcleswudxbk" path="res://assets/midi/art/ui/boat.png" id="11_c2q1i"]
 [ext_resource type="Texture2D" uid="uid://bqd810uss3rh3" path="res://assets/midi/art/ui/rod_idle.png" id="12_qsx7x"]
+[ext_resource type="Texture2D" uid="uid://blvk62cei3g6g" path="res://assets/midi/art/ui/big_caster.png" id="13_uycde"]
+[ext_resource type="Texture2D" uid="uid://da7ypmaymqaoa" path="res://assets/midi/art/ui/rod_cast_idle.png" id="14_vmyro"]
+[ext_resource type="Texture2D" uid="uid://dmmrmwyptj26i" path="res://assets/midi/art/ui/rod_reel_in.png" id="15_nvdca"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3lks"]
 atlas = ExtResource("5_h0em5")
@@ -243,6 +246,105 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_esqpp"]
+atlas = ExtResource("13_uycde")
+region = Rect2(0, 0, 128, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84qbt"]
+atlas = ExtResource("13_uycde")
+region = Rect2(128, 0, 128, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmgc2"]
+atlas = ExtResource("13_uycde")
+region = Rect2(256, 0, 128, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h750o"]
+atlas = ExtResource("13_uycde")
+region = Rect2(384, 0, 128, 116)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2b4uy"]
+atlas = ExtResource("13_uycde")
+region = Rect2(512, 0, 128, 116)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0d3l5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esqpp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84qbt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmgc2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h750o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2b4uy")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_52jcu"]
+atlas = ExtResource("14_vmyro")
+region = Rect2(0, 0, 43, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bl1g"]
+atlas = ExtResource("14_vmyro")
+region = Rect2(43, 0, 43, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_j81ae"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52jcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bl1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_52jcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bl1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bl1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bl1g")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l8ky8"]
+atlas = ExtResource("15_nvdca")
+region = Rect2(0, 0, 43, 63)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xlmh"]
+atlas = ExtResource("15_nvdca")
+region = Rect2(43, 0, 43, 63)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5xjnd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l8ky8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xlmh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="test_game" type="Node2D"]
 script = ExtResource("1_mfugn")
 
@@ -381,13 +483,39 @@ libraries = {
 "": SubResource("AnimationLibrary_p7ybw")
 }
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BoatSprite"]
+[node name="IdleAnimation" type="AnimatedSprite2D" parent="BoatSprite"]
 texture_filter = 1
-position = Vector2(32, -30)
+position = Vector2(32, -31)
 sprite_frames = SubResource("SpriteFrames_h4lv4")
 autoplay = "default"
+frame_progress = 0.688323
+centered = false
+
+[node name="CastAnimation" type="AnimatedSprite2D" parent="BoatSprite"]
+visible = false
+texture_filter = 1
+position = Vector2(-31, -88)
+sprite_frames = SubResource("SpriteFrames_0d3l5")
+frame = 4
+frame_progress = 1.0
+centered = false
+
+[node name="CastIdleAnimation" type="AnimatedSprite2D" parent="BoatSprite"]
+visible = false
+texture_filter = 1
+position = Vector2(9, -36)
+sprite_frames = SubResource("SpriteFrames_j81ae")
+frame = 5
+frame_progress = 1.0
+centered = false
+
+[node name="ReelAnimation" type="AnimatedSprite2D" parent="BoatSprite"]
+visible = false
+texture_filter = 1
+position = Vector2(7, -38)
+sprite_frames = SubResource("SpriteFrames_5xjnd")
 frame = 1
-frame_progress = 0.237035
+frame_progress = 0.389167
 centered = false
 
 [connection signal="appeared_lyric" from="MidiPlayer" to="." method="_on_midi_player_appeared_lyric"]
