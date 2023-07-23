@@ -1,13 +1,182 @@
-[gd_scene load_steps=6 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=27 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
+[ext_resource type="Texture2D" uid="uid://patdkp0ctj3y" path="res://assets/midi/art/ui/game_background.png" id="2_m3r0g"]
 [ext_resource type="Texture2D" uid="uid://dm4ioyicpsplt" path="res://assets/midi/art/ui/space_to_cast.png" id="3_o5g4o"]
 [ext_resource type="Texture2D" uid="uid://b76w6mnw1e2p8" path="res://assets/midi/art/ui/esc_to_pause.png" id="4_irbyd"]
 [ext_resource type="Script" path="res://scenes/test_scene/note_manager.gd" id="5_7urw4"]
+[ext_resource type="Texture2D" uid="uid://8kubqpng1gt5" path="res://assets/midi/art/ui/a_net_sheet.png" id="5_h0em5"]
+[ext_resource type="Texture2D" uid="uid://bqkbwrja05ow" path="res://assets/midi/art/ui/s_net_sheet.png" id="6_wk37k"]
+[ext_resource type="Texture2D" uid="uid://dqgh5f8mkyqi8" path="res://assets/midi/art/ui/d_net_sheet.png" id="7_qwhm5"]
+[ext_resource type="Texture2D" uid="uid://bvx1jw8fh8uys" path="res://assets/midi/art/ui/f_net_sheet.png" id="8_abxcn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e3lks"]
+atlas = ExtResource("5_h0em5")
+region = Rect2(0, 0, 23, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64dq0"]
+atlas = ExtResource("5_h0em5")
+region = Rect2(23, 0, 23, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r27fb"]
+atlas = ExtResource("5_h0em5")
+region = Rect2(46, 0, 23, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a60rg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e3lks")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64dq0")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r27fb")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mdmmt"]
+atlas = ExtResource("6_wk37k")
+region = Rect2(0, 0, 23, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l3tki"]
+atlas = ExtResource("6_wk37k")
+region = Rect2(23, 0, 23, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xkr3x"]
+atlas = ExtResource("6_wk37k")
+region = Rect2(46, 0, 23, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h1o1f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mdmmt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l3tki")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xkr3x")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huhd4"]
+atlas = ExtResource("7_qwhm5")
+region = Rect2(0, 0, 23, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwl7u"]
+atlas = ExtResource("7_qwhm5")
+region = Rect2(23, 0, 23, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ga22"]
+atlas = ExtResource("7_qwhm5")
+region = Rect2(46, 0, 23, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l0kf8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huhd4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwl7u")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ga22")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wao1h"]
+atlas = ExtResource("8_abxcn")
+region = Rect2(0, 0, 23, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uswj"]
+atlas = ExtResource("8_abxcn")
+region = Rect2(23, 0, 23, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p17p2"]
+atlas = ExtResource("8_abxcn")
+region = Rect2(46, 0, 23, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uk023"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wao1h")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uswj")
+}],
+"loop": true,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p17p2")
+}],
+"loop": true,
+"name": &"red",
+"speed": 5.0
+}]
 
 [node name="test_game" type="Node2D"]
 script = ExtResource("1_mfugn")
+
+[node name="Background" type="Node" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+z_index = -1
+texture_filter = 1
+position = Vector2(64, 64)
+texture = ExtResource("2_m3r0g")
 
 [node name="MidiPlayer" parent="." instance=ExtResource("1_ae3a3")]
 file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
@@ -17,16 +186,16 @@ load_all_voices_from_soundfont = false
 script = ExtResource("5_7urw4")
 
 [node name="a_start" type="Marker2D" parent="note_manager"]
-position = Vector2(40, 16)
+position = Vector2(40, 24)
 
 [node name="s_start" type="Marker2D" parent="note_manager"]
-position = Vector2(56, 16)
+position = Vector2(56, 24)
 
 [node name="d_start" type="Marker2D" parent="note_manager"]
-position = Vector2(72, 16)
+position = Vector2(72, 24)
 
 [node name="f_start" type="Marker2D" parent="note_manager"]
-position = Vector2(88, 16)
+position = Vector2(88, 24)
 
 [node name="a_target" type="Marker2D" parent="note_manager"]
 position = Vector2(16, 92)
@@ -42,37 +211,36 @@ position = Vector2(112, 92)
 
 [node name="note_container" type="Node" parent="note_manager"]
 
+[node name="NetA" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(12, 92)
+sprite_frames = SubResource("SpriteFrames_a60rg")
+animation = &"green"
+autoplay = "default"
+
+[node name="NetS" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(48, 92)
+sprite_frames = SubResource("SpriteFrames_h1o1f")
+autoplay = "default"
+
+[node name="NetD" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(84, 92)
+sprite_frames = SubResource("SpriteFrames_l0kf8")
+autoplay = "default"
+
+[node name="NetF" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(116, 92)
+sprite_frames = SubResource("SpriteFrames_uk023")
+autoplay = "default"
+
 [node name="keys" type="ColorRect" parent="."]
 offset_top = 80.0
 offset_right = 128.0
 offset_bottom = 104.0
-color = Color(1, 1, 1, 0.329412)
-
-[node name="Polygon2D" type="Polygon2D" parent="keys"]
-position = Vector2(12, 16)
-color = Color(0.982343, 0.982342, 0.982342, 1)
-polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
-
-[node name="Polygon2D2" type="Polygon2D" parent="keys"]
-position = Vector2(44, 16)
-polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
-
-[node name="Polygon2D3" type="Polygon2D" parent="keys"]
-position = Vector2(76, 16)
-polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
-
-[node name="Polygon2D4" type="Polygon2D" parent="keys"]
-position = Vector2(108, 16)
-polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
-
-[node name="Label" type="Label" parent="keys"]
-layout_mode = 0
-offset_right = 128.0
-offset_bottom = 23.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 14
-text = "   a       s      d       f "
-vertical_alignment = 1
+color = Color(1, 1, 1, 0)
 
 [node name="score" type="Label" parent="keys"]
 layout_mode = 0

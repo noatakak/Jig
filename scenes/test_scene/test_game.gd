@@ -29,11 +29,6 @@ var note_f_timer
 
 var timer_container
 
-var a_poly
-var s_poly
-var d_poly
-var f_poly
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mplayer = get_node("MidiPlayer")
@@ -42,11 +37,6 @@ func _ready():
 	
 	score = 0
 	buffer = 0.2
-	
-	a_poly = get_node("keys/Polygon2D")
-	s_poly = get_node("keys/Polygon2D2")
-	d_poly = get_node("keys/Polygon2D3")
-	f_poly = get_node("keys/Polygon2D4")
 	
 	# intitalize timers and flags
 	key_a_flag = false
@@ -131,22 +121,22 @@ func _process(_delta):
 		
 	if mplayer.playing:
 		if key_a_flag and note_a_flag:
-			a_poly.color = "2a983c"
+			get_node("NetA").play("green")							
 			key_a_flag = false
 			note_a_flag = false
 			score += 1
 		if key_s_flag and note_s_flag:
-			s_poly.color = "2a983c"
+			get_node("NetS").play("green")										
 			key_s_flag = false
 			note_s_flag = false
 			score += 1
 		if key_d_flag and note_d_flag:
-			d_poly.color = "2a983c"
+			get_node("NetD").play("green")										
 			key_d_flag = false
 			note_d_flag = false
 			score += 1
 		if key_f_flag and note_f_flag:
-			f_poly.color = "2a983c"
+			get_node("NetF").play("green")										
 			key_f_flag = false
 			note_f_flag = false
 			score += 1
@@ -173,19 +163,19 @@ func _input(event):
 	if event.is_action_pressed("a "):
 		key_a_flag = true
 		key_a_timer.start()
-		a_poly.color = 606060
+		get_node("NetA").play("red")				
 	if	event.is_action_pressed("s "):
 		key_s_flag = true
 		key_s_timer.start()
-		s_poly.color = 606060
+		get_node("NetS").play("red")						
 	if event.is_action_pressed("d "):
 		key_d_flag = true
 		key_d_timer.start()
-		d_poly.color = 606060
+		get_node("NetD").play("red")						
 	if event.is_action_pressed("f "):
 		key_f_flag = true
 		key_f_timer.start()
-		f_poly.color = 606060
+		get_node("NetF").play("red")						
 
 
 # timer functions
@@ -193,40 +183,47 @@ func _on_key_a_timer_timeout():
 	if key_a_flag:
 		key_a_flag = false
 		score -= 1
-	a_poly.color = "ffffff"
+	get_node("NetA").play("default")
+	
 func _on_key_s_timer_timeout():
 	if key_s_flag:
 		key_s_flag = false
 		score -= 1
-	s_poly.color = "ffffff"
+	get_node("NetS").play("default")
+	
 func _on_key_d_timer_timeout():
 	if key_d_flag:
 		key_d_flag = false
 		score -= 1
-	d_poly.color = "ffffff"
+	get_node("NetD").play("default")
+	
 func _on_key_f_timer_timeout():
 	if key_f_flag:
 		key_f_flag = false
 		score -= 1
-	f_poly.color = "ffffff"
+	get_node("NetF").play("default")	
 
 func _on_note_a_timer_timeout():
 	if note_a_flag:
 		note_a_flag = false
 		score -= 1
-	a_poly.color = "ffffff"
+	get_node("NetA").play("default")
+	
 func _on_note_s_timer_timeout():
 	if note_s_flag:
 		note_s_flag = false
 		score -= 1
-	s_poly.color = "ffffff"
+	get_node("NetS").play("default")	
+	
 func _on_note_d_timer_timeout():
 	if note_d_flag:
 		note_d_flag = false
 		score -= 1
-	d_poly.color = "ffffff"
+	get_node("NetD").play("default")		
+	
 func _on_note_f_timer_timeout():
 	if note_f_flag:
 		note_f_flag = false
 		score -= 1
-	f_poly.color = "ffffff"
+	get_node("NetF").play("default")	
+	
