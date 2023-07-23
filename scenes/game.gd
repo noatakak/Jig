@@ -38,6 +38,7 @@ func _on_quit_button_pressed():
 	midi_game.ui.visible = false
 	midi_game.visible = false
 	get_node("PauseWindow").visible = false
+	get_node("EndWindow").visible = false
 	get_node("MainMenu").visible = true
 	get_tree().paused = false
 	midi_game.get_node("BoatSprite/ReelAnimation").visible = false

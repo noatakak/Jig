@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://0ouiskkj40vj"]
+[gd_scene load_steps=22 format=3 uid="uid://0ouiskkj40vj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
 [ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
 [ext_resource type="Texture2D" uid="uid://vkyi6fs1wfmm" path="res://assets/midi/art/ui/background_mm.png" id="3_k1nx3"]
 [ext_resource type="Texture2D" uid="uid://08h72075md4q" path="res://assets/midi/art/ui/jig_logo_mm.png" id="4_sofuh"]
+[ext_resource type="Texture2D" uid="uid://bp0v0wnnbeb6" path="res://assets/midi/art/ui/bones.png" id="4_v7blb"]
 [ext_resource type="Texture2D" uid="uid://1rb81oic6u2o" path="res://assets/midi/art/ui/play_button_mm.png" id="5_270sj"]
 [ext_resource type="Texture2D" uid="uid://d3n0u4nsg5rk2" path="res://assets/midi/art/ui/play_button_click.png" id="6_vjfq7"]
 [ext_resource type="Texture2D" uid="uid://djs8oihwwi5wn" path="res://assets/midi/art/ui/play_button_hover.png" id="7_qj03q"]
@@ -48,7 +49,6 @@ script = ExtResource("1_mimj6")
 [node name="midi_game" parent="." instance=ExtResource("2_6ipgu")]
 
 [node name="EndWindow" type="ColorRect" parent="."]
-visible = false
 z_index = 1
 offset_right = 128.0
 offset_bottom = 128.0
@@ -90,7 +90,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-texture = ExtResource("8_x1t51")
+texture = ExtResource("4_v7blb")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer"]
