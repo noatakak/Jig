@@ -29,11 +29,15 @@ var note_f_timer
 
 var timer_container
 
+var casted_flag
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mplayer = get_node("MidiPlayer")
 	ui = get_node("keys")
 	ui.visible = false
+	
+	casted_flag = false
 	
 	score = 0
 	buffer = 0.2
@@ -112,10 +116,12 @@ func _process(_delta):
 	get_node("keys/score").text = "Score: " + str(score)
 	get_node("note_manager").move_notes(mplayer.position)
 	# hit space to make ui visible and start music
-	if Input.is_action_pressed("test") and not mplayer.playing:
+	if Input.is_action_pressed("test") and not casted_flag and not mplayer.playing:
+		casted_flag = true
 		var song = select_song()
 		load_notes(song)
 		mplayer.file = song
+		
 		
 		$BoatSprite/IdleAnimation.visible = false
 		

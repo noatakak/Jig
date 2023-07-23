@@ -33,4 +33,12 @@ func _on_quit_button_pressed():
 	get_node("PauseWindow").visible = false
 	get_node("MainMenu").visible = true
 	get_tree().paused = false
+	midi_game.get_node("BoatSprite/ReelAnimation").visible = false
+	midi_game.get_node("BoatSprite/ReelAnimation").stop()	
+	midi_game.get_node("BoatSprite/CastAnimation").visible = false
+	midi_game.get_node("BoatSprite/CastAnimation").stop()
+	midi_game.get_node("BoatSprite/CastIdleAnimation").visible = false
+	midi_game.get_node("BoatSprite/CastIdleAnimation").stop()		
+	midi_game.get_node("BoatSprite/IdleAnimation").visible = true	
+	midi_game.casted_flag = false
 	midi_game.set_process(false)
