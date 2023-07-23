@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://0ouiskkj40vj"]
+[gd_scene load_steps=16 format=3 uid="uid://0ouiskkj40vj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
 [ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://ci2thsdq67qxs" path="res://assets/midi/art/ui/quit_button_default.png" id="9_r3415"]
 [ext_resource type="Texture2D" uid="uid://bpfnqqsxdh8r6" path="res://assets/midi/art/ui/quit_button_click.png" id="10_gu3m1"]
 [ext_resource type="Texture2D" uid="uid://durr5wvx4bw3m" path="res://assets/midi/art/ui/quit_button_hover.png" id="11_coh16"]
+[ext_resource type="AudioStream" uid="uid://b06boyjfvcifg" path="res://assets/midi/wavs/click.wav" id="12_24htv"]
+[ext_resource type="AudioStream" uid="uid://bevamqkocfknm" path="res://assets/midi/wavs/ocean.wav" id="13_uqjap"]
 
 [sub_resource type="GDScript" id="GDScript_juip4"]
 script/source = "extends ColorRect
@@ -177,6 +179,14 @@ size_flags_vertical = 4
 texture_normal = ExtResource("5_270sj")
 texture_pressed = ExtResource("6_vjfq7")
 texture_hover = ExtResource("7_qj03q")
+
+[node name="ButtonClick" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_24htv")
+
+[node name="WaterSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_uqjap")
+volume_db = -10.691
+autoplay = true
 
 [connection signal="pressed" from="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
