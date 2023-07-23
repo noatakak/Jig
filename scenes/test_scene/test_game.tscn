@@ -473,6 +473,39 @@ sprite_frames = SubResource("SpriteFrames_uk023")
 autoplay = "default"
 centered = false
 
+[node name="Line0" type="Line2D" parent="keys"]
+points = PackedVector2Array(0, 15, 40, -56)
+width = 1.0
+default_color = Color(0, 0, 0.988235, 1)
+
+[node name="Line1" type="Line2D" parent="keys"]
+position = Vector2(30, 15)
+points = PackedVector2Array(1, 0, 21, -71)
+width = 1.0
+default_color = Color(0, 0, 0.984375, 1)
+
+[node name="Line2" type="Line2D" parent="keys"]
+position = Vector2(30, 15)
+points = PackedVector2Array(34, 0, 34, -71)
+width = 1.0
+default_color = Color(0, 0, 0.984375, 1)
+
+[node name="Line3" type="Line2D" parent="keys"]
+position = Vector2(98, 15)
+rotation = 3.14159
+scale = Vector2(1, -1)
+points = PackedVector2Array(2, 0, 21, -71)
+width = 1.0
+default_color = Color(0, 0, 0.984375, 1)
+
+[node name="Line4" type="Line2D" parent="keys"]
+position = Vector2(128, 0)
+rotation = 3.14159
+scale = Vector2(1, -1)
+points = PackedVector2Array(0, 15, 40, -56)
+width = 1.0
+default_color = Color(0, 0, 0.988235, 1)
+
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
 anchor_left = 0.5
