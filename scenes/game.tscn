@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://0ouiskkj40vj"]
+[gd_scene load_steps=21 format=3 uid="uid://0ouiskkj40vj"]
 
 [ext_resource type="Script" path="res://scenes/game.gd" id="1_mimj6"]
 [ext_resource type="PackedScene" uid="uid://ku2wfh40d1r7" path="res://scenes/test_scene/test_game.tscn" id="2_6ipgu"]
@@ -13,6 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://durr5wvx4bw3m" path="res://assets/midi/art/ui/quit_button_hover.png" id="11_coh16"]
 [ext_resource type="AudioStream" uid="uid://b06boyjfvcifg" path="res://assets/midi/wavs/click.wav" id="12_24htv"]
 [ext_resource type="AudioStream" uid="uid://bevamqkocfknm" path="res://assets/midi/wavs/ocean.wav" id="13_uqjap"]
+[ext_resource type="AudioStream" uid="uid://b35d2bklkghk0" path="res://assets/midi/wavs/snare.wav" id="14_n8qwe"]
+[ext_resource type="AudioStream" uid="uid://b3m8jv63uqbnk" path="res://assets/midi/wavs/drum.wav" id="14_yvlat"]
+[ext_resource type="AudioStream" uid="uid://covknxget87n0" path="res://assets/midi/wavs/splash1.wav" id="16_kgurn"]
+[ext_resource type="AudioStream" uid="uid://cl7t06knti621" path="res://assets/midi/wavs/splash2.wav" id="17_w4v17"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1jene"]
 
 [sub_resource type="GDScript" id="GDScript_juip4"]
 script/source = "extends ColorRect
@@ -40,6 +46,71 @@ func _input(event):
 script = ExtResource("1_mimj6")
 
 [node name="midi_game" parent="." instance=ExtResource("2_6ipgu")]
+
+[node name="EndWindow" type="ColorRect" parent="."]
+visible = false
+z_index = 1
+offset_right = 128.0
+offset_bottom = 128.0
+color = Color(0.196078, 0.196078, 0.196078, 0.505882)
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow"]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 32.0
+offset_right = 96.0
+offset_bottom = 96.0
+
+[node name="Panel" type="Panel" parent="EndWindow/MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1jene")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="EndWindow/MarginContainer/Panel"]
+texture_filter = 1
+layout_mode = 2
+offset_right = 64.0
+offset_bottom = 64.0
+texture = ExtResource("3_k1nx3")
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/MarginContainer/Panel"]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 14
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndWindow/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="FishPic" type="TextureRect" parent="EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("8_x1t51")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 13
+theme_override_constants/margin_right = 13
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="PlayButton" type="TextureButton" parent="EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_270sj")
+texture_pressed = ExtResource("6_vjfq7")
+texture_hover = ExtResource("7_qj03q")
 
 [node name="PauseWindow" type="ColorRect" parent="."]
 process_mode = 3
@@ -188,5 +259,22 @@ stream = ExtResource("13_uqjap")
 volume_db = -10.691
 autoplay = true
 
+[node name="SnareSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_n8qwe")
+volume_db = -10.0
+
+[node name="DrumSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_yvlat")
+volume_db = -10.0
+
+[node name="Splash1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_kgurn")
+volume_db = -12.916
+
+[node name="Splash2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("17_w4v17")
+volume_db = -12.916
+
+[connection signal="pressed" from="EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="PauseWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="MainMenu/Panel/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]

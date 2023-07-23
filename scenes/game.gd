@@ -17,7 +17,13 @@ func _process(_delta):
 func _on_play_button_pressed():
 	$ButtonClick.play()
 	get_node("MainMenu").visible = false
+	get_node("EndWindow").visible = false
+	midi_game.score = 0
+	midi_game.mplayer.position = 0
+	for child in midi_game.get_node("note_manager/note_container").get_children():
+		child.queue_free()
 	midi_game.visible = true
+	midi_game.casted_flag = false
 	midi_game.set_process(true)
 
 
@@ -26,6 +32,7 @@ func _on_quit_button_pressed():
 	$ButtonClick.play()
 	midi_game.score = 0
 	midi_game.mplayer.stop()
+	midi_game.mplayer.position = 0
 	for child in midi_game.get_node("note_manager/note_container").get_children():
 		child.queue_free()
 	midi_game.ui.visible = false

@@ -1,9 +1,10 @@
-[gd_scene load_steps=52 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=57 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
 [ext_resource type="Texture2D" uid="uid://patdkp0ctj3y" path="res://assets/midi/art/ui/game_background.png" id="2_m3r0g"]
 [ext_resource type="Texture2D" uid="uid://dm4ioyicpsplt" path="res://assets/midi/art/ui/space_to_cast.png" id="3_o5g4o"]
+[ext_resource type="Texture2D" uid="uid://chet40imwqj8y" path="res://assets/midi/art/ui/new-bg.png" id="3_piph8"]
 [ext_resource type="Texture2D" uid="uid://b76w6mnw1e2p8" path="res://assets/midi/art/ui/esc_to_pause.png" id="4_irbyd"]
 [ext_resource type="Script" path="res://scenes/test_scene/note_manager.gd" id="5_7urw4"]
 [ext_resource type="Texture2D" uid="uid://8kubqpng1gt5" path="res://assets/midi/art/ui/a_net_sheet.png" id="5_h0em5"]
@@ -15,6 +16,35 @@
 [ext_resource type="Texture2D" uid="uid://blvk62cei3g6g" path="res://assets/midi/art/ui/big_caster.png" id="13_uycde"]
 [ext_resource type="Texture2D" uid="uid://da7ypmaymqaoa" path="res://assets/midi/art/ui/rod_cast_idle.png" id="14_vmyro"]
 [ext_resource type="Texture2D" uid="uid://dmmrmwyptj26i" path="res://assets/midi/art/ui/rod_reel_in.png" id="15_nvdca"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6mqo"]
+atlas = ExtResource("3_piph8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4demp"]
+atlas = ExtResource("3_piph8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2js8"]
+atlas = ExtResource("3_piph8")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4r3os"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6mqo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4demp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2js8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3lks"]
 atlas = ExtResource("5_h0em5")
@@ -351,10 +381,19 @@ script = ExtResource("1_mfugn")
 [node name="Background" type="Node" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Background"]
+visible = false
 z_index = -1
 texture_filter = 1
 position = Vector2(64, 64)
 texture = ExtResource("2_m3r0g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Background"]
+z_index = -1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4r3os")
+autoplay = "default"
+frame_progress = 0.12778
+centered = false
 
 [node name="MidiPlayer" parent="." instance=ExtResource("1_ae3a3")]
 file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
@@ -362,30 +401,31 @@ load_all_voices_from_soundfont = false
 
 [node name="note_manager" type="Node" parent="."]
 script = ExtResource("5_7urw4")
+milisec_view = 3000
 
 [node name="a_start" type="Marker2D" parent="note_manager"]
-position = Vector2(40, 24)
+position = Vector2(45, 24)
 
 [node name="s_start" type="Marker2D" parent="note_manager"]
-position = Vector2(56, 24)
+position = Vector2(57, 24)
 
 [node name="d_start" type="Marker2D" parent="note_manager"]
-position = Vector2(72, 24)
+position = Vector2(71, 24)
 
 [node name="f_start" type="Marker2D" parent="note_manager"]
-position = Vector2(88, 24)
+position = Vector2(83, 24)
 
 [node name="a_target" type="Marker2D" parent="note_manager"]
-position = Vector2(16, 92)
+position = Vector2(16, 95)
 
 [node name="s_target" type="Marker2D" parent="note_manager"]
-position = Vector2(48, 92)
+position = Vector2(48, 95)
 
 [node name="d_target" type="Marker2D" parent="note_manager"]
-position = Vector2(80, 92)
+position = Vector2(80, 95)
 
 [node name="f_target" type="Marker2D" parent="note_manager"]
-position = Vector2(112, 92)
+position = Vector2(112, 95)
 
 [node name="note_container" type="Node" parent="note_manager"]
 
@@ -407,28 +447,28 @@ text = "Score: "
 
 [node name="NetA" type="AnimatedSprite2D" parent="keys"]
 texture_filter = 1
-position = Vector2(1, 6)
+position = Vector2(1, 9)
 sprite_frames = SubResource("SpriteFrames_a60rg")
 autoplay = "default"
 centered = false
 
 [node name="NetS" type="AnimatedSprite2D" parent="keys"]
 texture_filter = 1
-position = Vector2(33, 6)
+position = Vector2(33, 9)
 sprite_frames = SubResource("SpriteFrames_h1o1f")
 autoplay = "default"
 centered = false
 
 [node name="NetD" type="AnimatedSprite2D" parent="keys"]
 texture_filter = 1
-position = Vector2(72, 6)
+position = Vector2(72, 9)
 sprite_frames = SubResource("SpriteFrames_l0kf8")
 autoplay = "default"
 centered = false
 
 [node name="NetF" type="AnimatedSprite2D" parent="keys"]
 texture_filter = 1
-position = Vector2(104, 6)
+position = Vector2(104, 9)
 sprite_frames = SubResource("SpriteFrames_uk023")
 autoplay = "default"
 centered = false
@@ -519,3 +559,4 @@ frame_progress = 0.389167
 centered = false
 
 [connection signal="appeared_lyric" from="MidiPlayer" to="." method="_on_midi_player_appeared_lyric"]
+[connection signal="finished" from="MidiPlayer" to="." method="_on_midi_player_finished"]

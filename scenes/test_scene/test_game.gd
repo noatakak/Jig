@@ -31,6 +31,8 @@ var timer_container
 
 var casted_flag
 
+var fish_id
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mplayer = get_node("MidiPlayer")
@@ -109,7 +111,14 @@ func load_notes(file: String):
 	get_node("note_manager").update_note_list(lyric_data)
 
 func select_song():
-	return "res://assets/midi/midi/Morrisons_Jig-lyrics.mid"
+	fish_id = randi() % 2 + 1
+	if fish_id == 1:
+		return "res://assets/midi/midi/Morrisons_Jig-lyrics.mid"
+	elif fish_id == 2:
+		return "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
+	else:
+		return "res://assets/midi/midi/Irish_washerwoman_Jig-lyrics.mid"
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -128,6 +137,7 @@ func _process(_delta):
 		$BoatSprite/CastAnimation.visible = true
 		$BoatSprite/CastAnimation.play("default")
 		await $BoatSprite/CastAnimation.animation_finished	
+		get_parent().get_node("Splash1").play()
 		
 		$BoatSprite/CastAnimation.visible = false
 		$BoatSprite/CastIdleAnimation.visible = true		
@@ -147,21 +157,25 @@ func _process(_delta):
 			key_a_flag = false
 			note_a_flag = false
 			score += 1
+			get_parent().get_node("SnareSound").play()
 		if key_s_flag and note_s_flag:
 			get_node("keys/NetS").play("green")										
 			key_s_flag = false
 			note_s_flag = false
 			score += 1
+			get_parent().get_node("SnareSound").play()
 		if key_d_flag and note_d_flag:
 			get_node("keys/NetD").play("green")										
 			key_d_flag = false
 			note_d_flag = false
 			score += 1
+			get_parent().get_node("SnareSound").play()
 		if key_f_flag and note_f_flag:
 			get_node("keys/NetF").play("green")										
 			key_f_flag = false
 			note_f_flag = false
 			score += 1
+			get_parent().get_node("SnareSound").play()
 
 
 # gets a signal on lyric appearance
@@ -205,47 +219,80 @@ func _on_key_a_timer_timeout():
 	if key_a_flag:
 		key_a_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetA").play("default")
 	
 func _on_key_s_timer_timeout():
 	if key_s_flag:
 		key_s_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetS").play("default")
 	
 func _on_key_d_timer_timeout():
 	if key_d_flag:
 		key_d_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetD").play("default")
 	
 func _on_key_f_timer_timeout():
 	if key_f_flag:
 		key_f_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetF").play("default")	
 
 func _on_note_a_timer_timeout():
 	if note_a_flag:
 		note_a_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetA").play("default")
 	
 func _on_note_s_timer_timeout():
 	if note_s_flag:
 		note_s_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetS").play("default")	
 	
 func _on_note_d_timer_timeout():
 	if note_d_flag:
 		note_d_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetD").play("default")		
 	
 func _on_note_f_timer_timeout():
 	if note_f_flag:
 		note_f_flag = false
 		score -= 1
+		get_parent().get_node("DrumSound").play()
 	get_node("keys/NetF").play("default")	
 	
+
+
+func _on_midi_player_finished():
+	casted_flag = false
+	var end_score: float = float(score) / float(len(lyric_data))
+	if end_score > .5:
+		if end_score >= .9:
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/bigfish" + str(fish_id) + ".png")
+		elif end_score < .9 and end_score >= .7:
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/mediumfish" + str(fish_id) + ".png")
+		else:
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/smallfish" + str(fish_id) + ".png")
+	else:
+		pass
+		get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/bones.png")
+	get_node("BoatSprite/ReelAnimation").visible = false
+	get_node("BoatSprite/ReelAnimation").stop()	
+	get_node("BoatSprite/CastAnimation").visible = false
+	get_node("BoatSprite/CastAnimation").stop()
+	get_node("BoatSprite/CastIdleAnimation").visible = false
+	get_node("BoatSprite/CastIdleAnimation").stop()
+	get_node("BoatSprite/IdleAnimation").visible = true	
+	ui.visible = false
+	get_parent().get_node("EndWindow").visible = true
+	get_parent().get_node("Splash2").play()

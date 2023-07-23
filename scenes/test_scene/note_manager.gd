@@ -33,11 +33,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	for note in note_container.get_children():
-		if note.position.y >= 92:
+		if note.position.y >= a_target.position.y:
 			note.queue_free()
 
 
 func update_note_list(new_list):
+	milisec_view = randi_range(700,2700)
 	note_list = new_list
 	for child in note_container.get_children():
 		child.queue_free()
