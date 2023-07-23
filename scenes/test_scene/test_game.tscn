@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=37 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bqkbwrja05ow" path="res://assets/midi/art/ui/s_net_sheet.png" id="6_wk37k"]
 [ext_resource type="Texture2D" uid="uid://dqgh5f8mkyqi8" path="res://assets/midi/art/ui/d_net_sheet.png" id="7_qwhm5"]
 [ext_resource type="Texture2D" uid="uid://bvx1jw8fh8uys" path="res://assets/midi/art/ui/f_net_sheet.png" id="8_abxcn"]
+[ext_resource type="Texture2D" uid="uid://drtcleswudxbk" path="res://assets/midi/art/ui/boat.png" id="11_c2q1i"]
+[ext_resource type="Texture2D" uid="uid://bqd810uss3rh3" path="res://assets/midi/art/ui/rod_idle.png" id="12_qsx7x"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e3lks"]
 atlas = ExtResource("5_h0em5")
@@ -167,6 +169,80 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_fohqo"]
+resource_name = "bob"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(32, 101), Vector2(32, 103), Vector2(32, 101)]
+}
+
+[sub_resource type="Animation" id="Animation_k4txg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(32, 101)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p7ybw"]
+_data = {
+"RESET": SubResource("Animation_k4txg"),
+"bob": SubResource("Animation_fohqo")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n12o3"]
+atlas = ExtResource("12_qsx7x")
+region = Rect2(0, 0, 33, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uewbo"]
+atlas = ExtResource("12_qsx7x")
+region = Rect2(33, 0, 33, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7bjf"]
+atlas = ExtResource("12_qsx7x")
+region = Rect2(66, 0, 33, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8vib"]
+atlas = ExtResource("12_qsx7x")
+region = Rect2(33, 0, 33, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4lv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n12o3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uewbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7bjf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c8vib")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="test_game" type="Node2D"]
 script = ExtResource("1_mfugn")
 
@@ -211,35 +287,6 @@ position = Vector2(112, 92)
 
 [node name="note_container" type="Node" parent="note_manager"]
 
-[node name="NetA" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(1, 86)
-sprite_frames = SubResource("SpriteFrames_a60rg")
-autoplay = "default"
-centered = false
-
-[node name="NetS" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(33, 86)
-sprite_frames = SubResource("SpriteFrames_h1o1f")
-autoplay = "default"
-centered = false
-
-[node name="NetD" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(72, 86)
-sprite_frames = SubResource("SpriteFrames_l0kf8")
-autoplay = "default"
-centered = false
-
-[node name="NetF" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(104, 86)
-sprite_frames = SubResource("SpriteFrames_uk023")
-animation = &"red"
-autoplay = "default"
-centered = false
-
 [node name="keys" type="ColorRect" parent="."]
 offset_top = 80.0
 offset_right = 128.0
@@ -247,6 +294,7 @@ offset_bottom = 104.0
 color = Color(1, 1, 1, 0)
 
 [node name="score" type="Label" parent="keys"]
+visible = false
 layout_mode = 0
 offset_left = 36.0
 offset_top = 28.0
@@ -254,6 +302,34 @@ offset_right = 92.0
 offset_bottom = 48.0
 theme_override_font_sizes/font_size = 12
 text = "Score: "
+
+[node name="NetA" type="AnimatedSprite2D" parent="keys"]
+texture_filter = 1
+position = Vector2(1, 6)
+sprite_frames = SubResource("SpriteFrames_a60rg")
+autoplay = "default"
+centered = false
+
+[node name="NetS" type="AnimatedSprite2D" parent="keys"]
+texture_filter = 1
+position = Vector2(33, 6)
+sprite_frames = SubResource("SpriteFrames_h1o1f")
+autoplay = "default"
+centered = false
+
+[node name="NetD" type="AnimatedSprite2D" parent="keys"]
+texture_filter = 1
+position = Vector2(72, 6)
+sprite_frames = SubResource("SpriteFrames_l0kf8")
+autoplay = "default"
+centered = false
+
+[node name="NetF" type="AnimatedSprite2D" parent="keys"]
+texture_filter = 1
+position = Vector2(104, 6)
+sprite_frames = SubResource("SpriteFrames_uk023")
+autoplay = "default"
+centered = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 7
@@ -292,5 +368,26 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
 texture = ExtResource("3_o5g4o")
+
+[node name="BoatSprite" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(32, 101)
+texture = ExtResource("11_c2q1i")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BoatSprite"]
+autoplay = "bob"
+libraries = {
+"": SubResource("AnimationLibrary_p7ybw")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="BoatSprite"]
+texture_filter = 1
+position = Vector2(32, -30)
+sprite_frames = SubResource("SpriteFrames_h4lv4")
+autoplay = "default"
+frame = 1
+frame_progress = 0.237035
+centered = false
 
 [connection signal="appeared_lyric" from="MidiPlayer" to="." method="_on_midi_player_appeared_lyric"]
