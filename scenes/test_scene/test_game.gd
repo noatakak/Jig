@@ -33,6 +33,25 @@ var casted_flag
 
 var fish_id
 
+var bigfish1 = preload("res://assets/midi/art/ui/bigfish1.png")
+var bigfish2 = preload("res://assets/midi/art/ui/bigfish2.png")
+var bigfish3 = preload("res://assets/midi/art/ui/bigfish3.png")
+
+var big_fishes = [bigfish1, bigfish2, bigfish3]
+
+var normalfish1 = preload("res://assets/midi/art/ui/normalfish1.png")
+var normalfish2 = preload("res://assets/midi/art/ui/normalfish2.png")
+var normalfish3 = preload("res://assets/midi/art/ui/normalfish3.png")
+
+var normal_fishes = [normalfish1, normalfish2, normalfish3]
+
+var smallfish1 = preload("res://assets/midi/art/ui/smallfish1.png")
+var smallfish2 = preload("res://assets/midi/art/ui/smallfish2.png")
+var smallfish3 = preload("res://assets/midi/art/ui/smallfish3.png")
+
+var small_fishes = [smallfish1, smallfish2, smallfish3]
+
+var bones = preload("res://assets/midi/art/ui/bones.png")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mplayer = get_node("MidiPlayer")
@@ -111,7 +130,7 @@ func load_notes(file: String):
 	get_node("note_manager").update_note_list(lyric_data)
 
 func select_song():
-	fish_id = randi() % 2 + 1
+	fish_id = randi() % 2
 	if fish_id == 1:
 		return "res://assets/midi/midi/Morrisons_Jig-lyrics.mid"
 	elif fish_id == 2:
@@ -278,14 +297,14 @@ func _on_midi_player_finished():
 	var end_score: float = float(score) / float(len(lyric_data))
 	if end_score > .5:
 		if end_score >= .9:
-			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/bigfish" + str(fish_id) + ".png")
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(big_fishes[fish_id])
 		elif end_score < .9 and end_score >= .7:
-			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/mediumfish" + str(fish_id) + ".png")
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(normal_fishes[fish_id])
 		else:
-			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/smallfish" + str(fish_id) + ".png")
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(small_fishes[fish_id])
 	else:
 		pass
-		get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture("res://assets/midi/art/ui/bones.png")
+		get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(bones)
 	get_node("BoatSprite/ReelAnimation").visible = false
 	get_node("BoatSprite/ReelAnimation").stop()	
 	get_node("BoatSprite/CastAnimation").visible = false
