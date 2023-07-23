@@ -1,0 +1,113 @@
+[gd_scene load_steps=6 format=3 uid="uid://gmhd0g3o2g7y"]
+
+[ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
+[ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
+[ext_resource type="Script" path="res://scenes/test_scene/note_manager.gd" id="3_houj1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6gvq8"]
+line_spacing = 0.0
+font_size = 8
+
+[sub_resource type="LabelSettings" id="LabelSettings_1wlao"]
+line_spacing = 0.0
+font_size = 8
+
+[node name="test_game" type="Node2D"]
+script = ExtResource("1_mfugn")
+
+[node name="MidiPlayer" parent="." instance=ExtResource("1_ae3a3")]
+file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
+
+[node name="keys" type="ColorRect" parent="."]
+offset_top = 80.0
+offset_right = 128.0
+offset_bottom = 104.0
+color = Color(1, 1, 1, 0.329412)
+
+[node name="Polygon2D" type="Polygon2D" parent="keys"]
+position = Vector2(12, 16)
+color = Color(0.982343, 0.982342, 0.982342, 1)
+polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="keys"]
+position = Vector2(44, 16)
+polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
+
+[node name="Polygon2D3" type="Polygon2D" parent="keys"]
+position = Vector2(76, 16)
+polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
+
+[node name="Polygon2D4" type="Polygon2D" parent="keys"]
+position = Vector2(108, 16)
+polygon = PackedVector2Array(4, -16, 16, -4, 4, 8, -8, -4)
+
+[node name="Label" type="Label" parent="keys"]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+text = "   a       s      d       f "
+vertical_alignment = 1
+
+[node name="score" type="Label" parent="keys"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 28.0
+offset_right = 92.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 12
+text = "Score: "
+
+[node name="esc" type="Label" parent="."]
+offset_top = 104.0
+offset_right = 34.0
+offset_bottom = 130.0
+theme_override_font_sizes/font_size = 10
+text = "esc
+to pause"
+label_settings = SubResource("LabelSettings_6gvq8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="space" type="Label" parent="."]
+offset_left = 94.0
+offset_top = 104.0
+offset_right = 128.0
+offset_bottom = 128.0
+text = "space
+to cast"
+label_settings = SubResource("LabelSettings_1wlao")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="note_manager" type="Node" parent="."]
+script = ExtResource("3_houj1")
+
+[node name="a_start" type="Marker2D" parent="note_manager"]
+position = Vector2(40, 16)
+
+[node name="s_start" type="Marker2D" parent="note_manager"]
+position = Vector2(56, 16)
+
+[node name="d_start" type="Marker2D" parent="note_manager"]
+position = Vector2(72, 16)
+
+[node name="f_start" type="Marker2D" parent="note_manager"]
+position = Vector2(88, 16)
+
+[node name="a_target" type="Marker2D" parent="note_manager"]
+position = Vector2(16, 92)
+
+[node name="s_target" type="Marker2D" parent="note_manager"]
+position = Vector2(48, 92)
+
+[node name="d_target" type="Marker2D" parent="note_manager"]
+position = Vector2(80, 92)
+
+[node name="f_target" type="Marker2D" parent="note_manager"]
+position = Vector2(112, 92)
+
+[node name="note_container" type="Node" parent="note_manager"]
+
+[connection signal="appeared_lyric" from="MidiPlayer" to="." method="_on_midi_player_appeared_lyric"]

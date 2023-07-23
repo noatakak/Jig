@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://ku2wfh40d1r7"]
+[gd_scene load_steps=6 format=3 uid="uid://ku2wfh40d1r7"]
 
 [ext_resource type="PackedScene" uid="uid://cuyd1qv0pn26e" path="res://addons/old-midi/MidiPlayer.tscn" id="1_ae3a3"]
 [ext_resource type="Script" path="res://scenes/test_scene/test_game.gd" id="1_mfugn"]
 [ext_resource type="Texture2D" uid="uid://dm4ioyicpsplt" path="res://assets/midi/art/ui/space_to_cast.png" id="3_o5g4o"]
 [ext_resource type="Texture2D" uid="uid://b76w6mnw1e2p8" path="res://assets/midi/art/ui/esc_to_pause.png" id="4_irbyd"]
+[ext_resource type="Script" path="res://scenes/test_scene/note_manager.gd" id="5_7urw4"]
 
 [node name="test_game" type="Node2D"]
 script = ExtResource("1_mfugn")
@@ -11,6 +12,35 @@ script = ExtResource("1_mfugn")
 [node name="MidiPlayer" parent="." instance=ExtResource("1_ae3a3")]
 file = "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
 load_all_voices_from_soundfont = false
+
+[node name="note_manager" type="Node" parent="."]
+script = ExtResource("5_7urw4")
+
+[node name="a_start" type="Marker2D" parent="note_manager"]
+position = Vector2(40, 16)
+
+[node name="s_start" type="Marker2D" parent="note_manager"]
+position = Vector2(56, 16)
+
+[node name="d_start" type="Marker2D" parent="note_manager"]
+position = Vector2(72, 16)
+
+[node name="f_start" type="Marker2D" parent="note_manager"]
+position = Vector2(88, 16)
+
+[node name="a_target" type="Marker2D" parent="note_manager"]
+position = Vector2(16, 92)
+
+[node name="s_target" type="Marker2D" parent="note_manager"]
+position = Vector2(48, 92)
+
+[node name="d_target" type="Marker2D" parent="note_manager"]
+position = Vector2(80, 92)
+
+[node name="f_target" type="Marker2D" parent="note_manager"]
+position = Vector2(112, 92)
+
+[node name="note_container" type="Node" parent="note_manager"]
 
 [node name="keys" type="ColorRect" parent="."]
 offset_top = 80.0
