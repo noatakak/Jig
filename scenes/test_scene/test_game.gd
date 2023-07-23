@@ -52,6 +52,15 @@ var smallfish3 = preload("res://assets/midi/art/ui/smallfish3.png")
 var small_fishes = [smallfish1, smallfish2, smallfish3]
 
 var bones = preload("res://assets/midi/art/ui/bones.png")
+
+var stars0 = preload("res://assets/midi/art/ui/stars0.png")
+var stars1 = preload("res://assets/midi/art/ui/stars1.png")
+var stars2 = preload("res://assets/midi/art/ui/stars2.png")
+var stars3 = preload("res://assets/midi/art/ui/stars3.png")
+var stars4 = preload("res://assets/midi/art/ui/stars4.png")
+
+var stars = [stars0, stars1, stars2, stars3, stars4]
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mplayer = get_node("MidiPlayer")
@@ -315,15 +324,21 @@ func _on_midi_player_finished():
 	casted_flag = false
 	var end_score: float = float(score) / float(len(lyric_data))
 	if end_score > .5:
-		if end_score >= .9:
+		if end_score == 1:
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/Stars").set_texture(stars[4])			
+		elif end_score >= .9:
 			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(big_fishes[fish_id])
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/Stars").set_texture(stars[3])
 		elif end_score < .9 and end_score >= .7:
 			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(normal_fishes[fish_id])
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/Stars").set_texture(stars[2])			
 		else:
 			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(small_fishes[fish_id])
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/Stars").set_texture(stars[1])			
 	else:
 		pass
 		get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(bones)
+		get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/Stars").set_texture(stars[0])					
 	get_node("BoatSprite/ReelAnimation").visible = false
 	get_node("BoatSprite/ReelAnimation").stop()	
 	get_node("BoatSprite/CastAnimation").visible = false
