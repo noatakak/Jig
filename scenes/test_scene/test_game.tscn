@@ -213,28 +213,31 @@ position = Vector2(112, 92)
 
 [node name="NetA" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(12, 92)
+position = Vector2(1, 86)
 sprite_frames = SubResource("SpriteFrames_a60rg")
-animation = &"green"
 autoplay = "default"
+centered = false
 
 [node name="NetS" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(48, 92)
+position = Vector2(33, 86)
 sprite_frames = SubResource("SpriteFrames_h1o1f")
 autoplay = "default"
+centered = false
 
 [node name="NetD" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(84, 92)
+position = Vector2(72, 86)
 sprite_frames = SubResource("SpriteFrames_l0kf8")
 autoplay = "default"
+centered = false
 
 [node name="NetF" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(116, 92)
+position = Vector2(104, 86)
 sprite_frames = SubResource("SpriteFrames_uk023")
 autoplay = "default"
+centered = false
 
 [node name="keys" type="ColorRect" parent="."]
 offset_top = 80.0
