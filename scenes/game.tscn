@@ -49,6 +49,7 @@ script = ExtResource("1_mimj6")
 [node name="midi_game" parent="." instance=ExtResource("2_6ipgu")]
 
 [node name="EndWindow" type="ColorRect" parent="."]
+visible = false
 z_index = 1
 offset_right = 128.0
 offset_bottom = 128.0

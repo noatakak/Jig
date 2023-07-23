@@ -38,7 +38,7 @@ func _process(_delta):
 
 
 func update_note_list(new_list):
-	milisec_view = randi_range(700,2700)
+	milisec_view = randi_range(500,2000)
 	note_list = new_list
 	for child in note_container.get_children():
 		child.queue_free()
