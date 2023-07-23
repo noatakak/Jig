@@ -116,7 +116,8 @@ func load_notes(file: String):
 	var smf_reader: = preload("res://addons/old-midi/SMF.gd").new( )
 	var result: = smf_reader.read_file(file)
 	if result.error == OK:
-		print( result.data )
+		pass
+		#print( result.data )
 	var midi_data = result.data
 	var tracks = midi_data.tracks
 
@@ -199,7 +200,7 @@ func _process(_delta):
 
 # gets a signal on lyric appearance
 func _on_midi_player_appeared_lyric(lyric):
-	print("lyric: " + str(lyric))
+	#print("lyric: " + str(lyric))
 	if str(lyric) == "a ":
 		note_a_flag = true
 		note_a_timer.start()
