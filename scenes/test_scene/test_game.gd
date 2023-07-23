@@ -115,7 +115,7 @@ func load_notes(file: String):
 	get_node("note_manager").update_note_list(lyric_data)
 
 func select_song():
-	return "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
+	return "res://assets/midi/midi/Morrisons_Jig-lyrics.mid"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
