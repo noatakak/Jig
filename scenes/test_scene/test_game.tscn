@@ -50,23 +50,23 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mdmmt"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_erlue"]
 atlas = ExtResource("6_wk37k")
-region = Rect2(0, 0, 23, 14)
+region = Rect2(0, 0, 23, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l3tki"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhcgy"]
 atlas = ExtResource("6_wk37k")
-region = Rect2(23, 0, 23, 14)
+region = Rect2(23, 0, 23, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_xkr3x"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfoyh"]
 atlas = ExtResource("6_wk37k")
-region = Rect2(46, 0, 23, 14)
+region = Rect2(46, 0, 23, 13)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_h1o1f"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_mdmmt")
+"texture": SubResource("AtlasTexture_erlue")
 }],
 "loop": true,
 "name": &"default",
@@ -74,7 +74,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l3tki")
+"texture": SubResource("AtlasTexture_bhcgy")
 }],
 "loop": true,
 "name": &"green",
@@ -82,30 +82,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_xkr3x")
+"texture": SubResource("AtlasTexture_lfoyh")
 }],
 "loop": true,
 "name": &"red",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_huhd4"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_onh4d"]
 atlas = ExtResource("7_qwhm5")
-region = Rect2(0, 0, 23, 14)
+region = Rect2(0, 0, 23, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kwl7u"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftqm4"]
 atlas = ExtResource("7_qwhm5")
-region = Rect2(23, 0, 23, 14)
+region = Rect2(23, 0, 23, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5ga22"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_25k2e"]
 atlas = ExtResource("7_qwhm5")
-region = Rect2(46, 0, 23, 14)
+region = Rect2(46, 0, 23, 13)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l0kf8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_huhd4")
+"texture": SubResource("AtlasTexture_onh4d")
 }],
 "loop": true,
 "name": &"default",
@@ -113,7 +113,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kwl7u")
+"texture": SubResource("AtlasTexture_ftqm4")
 }],
 "loop": true,
 "name": &"green",
@@ -121,30 +121,30 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5ga22")
+"texture": SubResource("AtlasTexture_25k2e")
 }],
 "loop": true,
 "name": &"red",
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wao1h"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_73v7x"]
 atlas = ExtResource("8_abxcn")
-region = Rect2(0, 0, 23, 14)
+region = Rect2(0, 0, 23, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4uswj"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8e3a3"]
 atlas = ExtResource("8_abxcn")
-region = Rect2(23, 0, 23, 14)
+region = Rect2(23, 0, 23, 13)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p17p2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_syfdn"]
 atlas = ExtResource("8_abxcn")
-region = Rect2(46, 0, 23, 14)
+region = Rect2(46, 0, 23, 13)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uk023"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wao1h")
+"texture": SubResource("AtlasTexture_73v7x")
 }],
 "loop": true,
 "name": &"default",
@@ -152,7 +152,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4uswj")
+"texture": SubResource("AtlasTexture_8e3a3")
 }],
 "loop": true,
 "name": &"green",
@@ -160,7 +160,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p17p2")
+"texture": SubResource("AtlasTexture_syfdn")
 }],
 "loop": true,
 "name": &"red",
@@ -236,6 +236,7 @@ centered = false
 texture_filter = 1
 position = Vector2(104, 86)
 sprite_frames = SubResource("SpriteFrames_uk023")
+animation = &"red"
 autoplay = "default"
 centered = false
 
