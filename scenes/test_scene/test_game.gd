@@ -64,6 +64,7 @@ var stars = [stars0, stars1, stars2, stars3, stars4]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mplayer = get_node("MidiPlayer")
+	mplayer.no_thread_mode = true
 	ui = get_node("keys")
 	ui.visible = false
 	
@@ -140,13 +141,13 @@ func load_notes(file: String):
 	get_node("note_manager").update_note_list(lyric_data)
 
 func select_song():
-	fish_id = randi() % 2
+	fish_id = randi() % 3
 	if fish_id == 1:
 		return "res://assets/midi/midi/Morrisons_Jig-lyrics.mid"
 	elif fish_id == 2:
 		return "res://assets/midi/midi/Swallowtail_Jig-lyrics.mid"
 	else:
-		return "res://assets/midi/midi/Irish_washerwoman_Jig-lyrics.mid"
+		return "res://assets/midi/midi/Irish_Washerwoman_Jig-lyrics.mid"
 	
 	
 var mouse_position
@@ -326,6 +327,7 @@ func _on_midi_player_finished():
 	var end_score: float = float(score) / float(len(lyric_data))
 	if end_score > .5:
 		if end_score == 1:
+			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(big_fishes[fish_id])
 			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/Stars").set_texture(stars[4])			
 		elif end_score >= .9:
 			get_parent().get_node("EndWindow/MarginContainer/Panel/MarginContainer/VBoxContainer/FishPic").set_texture(big_fishes[fish_id])
